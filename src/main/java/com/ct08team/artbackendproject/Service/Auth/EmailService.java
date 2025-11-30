@@ -13,7 +13,7 @@ public class EmailService {
 
     @Autowired
     private JavaMailSender mailSender;
-
+    @Async // <--- Thêm dòng này: Nó sẽ chạy ở luồng riêng, không bắt User chờ
     public void sendOtpEmail(String to, String otp) throws MessagingException {
         // THAY ĐỔI: Sử dụng MimeMessage thay vì SimpleMailMessage
         MimeMessage mimeMessage = mailSender.createMimeMessage();
