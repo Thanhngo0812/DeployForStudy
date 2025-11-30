@@ -24,7 +24,7 @@ public class EmailService {
             // "utf-8" để hỗ trợ tiếng Việt, "true" để kích hoạt chế độ HTML
             MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, "utf-8");
 
-            helper.setFrom("thanhngoslab@gmail.com"); // Email bạn cấu hình ở properties
+            helper.setFrom("ngocongthanhsg0812@gmail.com"); // Email bạn cấu hình ở properties
             helper.setTo(to);
             helper.setSubject("Mã xác thực 2 lớp (2FA) của bạn");
 
