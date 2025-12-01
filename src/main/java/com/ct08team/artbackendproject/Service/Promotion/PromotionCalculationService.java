@@ -80,7 +80,7 @@ public class PromotionCalculationService {
         }
 
         // Làm tròn tiền (ví dụ: làm tròn đến 1000đ)
-        bestPrice = bestPrice.setScale(-3, RoundingMode.HALF_UP); // Làm tròn đến hàng nghìn
+        //bestPrice = bestPrice.setScale(-3, RoundingMode.HALF_UP); // Làm tròn đến hàng nghìn
         return Optional.of(bestPrice);
     }
 
