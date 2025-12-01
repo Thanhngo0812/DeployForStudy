@@ -24,7 +24,7 @@ public class EmailService {
             // "utf-8" để hỗ trợ tiếng Việt, "true" để kích hoạt chế độ HTML
             MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, "utf-8");
 
-            helper.setFrom("ngocongthanhsg0812@gmail.com"); // Email bạn cấu hình ở properties
+            helper.setFrom("tranhxintphcm@gmail.com"); // Email bạn cấu hình ở properties
             helper.setTo(to);
             helper.setSubject("Mã xác thực 2 lớp (2FA) của bạn");
 
@@ -45,7 +45,7 @@ public class EmailService {
     // MỚI: Hàm tiện ích để tạo mẫu HTML
     private String buildHtmlOtpTemplate(String otp) {
         // (Đây là link bạn đã cung cấp)
-        String logoUrl = "https://i.postimg.cc/BQxjTpYz/logo.png"; // <-- Link logo của bạn
+        String logoUrl = "https://res.cloudinary.com/dfcb3zzw9/image/upload/v1764557879/logo_dgs68g.png"; // <-- Link logo của bạn
 
         // --- CẬP NHẬT CSS SANG GIAO DIỆN TỐI (DARK MODE) ---
         // --- BAO GỒM BẢN VÁ LỖI CHO GMAIL DARK MODE ---
