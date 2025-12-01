@@ -32,8 +32,11 @@ public class PaymentController {
         Order order = orderService.getOrderById(Long.valueOf(orderId));
         if (order == null) return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Order not found");
 
+        // Cập nhật trạng thái
         order.setOrderStatus("CANCELLED");
         order.setPaymentStatus("FAILED");
+
+        // Hoàn lại số lượng tồn kho
         for (OrderItem item : order.getOrderItems()) {
             ProductVariant variant = item.getVariant();
             if (variant != null) {
@@ -41,22 +44,30 @@ public class PaymentController {
                 productVariantRepository.save(variant);
             }
         }
+        // Lưu thay đổi order xuống DB
         orderService.save(order);
 
-        return ResponseEntity.ok(Map.of("message", "Đã hủy đơn hàng", "order", order));
+        // --- ĐÃ SỬA ---
+        // Chỉ trả về thông báo thành công
+        return ResponseEntity.ok(Map.of("message", "Đã hủy đơn hàng thành công"));
     }
 
-    // 2. API Xác nhận thanh toán thành công (PUT /api/orders/{orderId}/confirm)
-    // -> Chuyển Status: PAID, Payment: SUCCESSFUL
+    // 2. API Xác nhận thanh toán thành công
     @PutMapping("/orders/{orderId}/confirm")
     public ResponseEntity<?> confirmOrderPayment(@PathVariable String orderId) {
         Order order = orderService.getOrderById(Long.valueOf(orderId));
         if (order == null) return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Order not found");
 
+        // Cập nhật trạng thái
         order.setOrderStatus("PAID");
         order.setPaymentStatus("SUCCESSFUL");
+
+        // Lưu thay đổi order xuống DB
         orderService.save(order);
-        return ResponseEntity.ok(Map.of("message", "Xác nhận thanh toán thành công", "order", order));
+
+        // --- ĐÃ SỬA ---
+        // Chỉ trả về thông báo thành công
+        return ResponseEntity.ok(Map.of("message", "Xác nhận thanh toán thành công"));
     }
 
 }
