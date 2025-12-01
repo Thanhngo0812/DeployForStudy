@@ -23,10 +23,16 @@ public class StatisticService {
     private OrderRepository orderRepository;
 
     private Instant getStartOfDay(LocalDate date) {
-        return date != null ? date.atStartOfDay(ZoneId.systemDefault()).toInstant() : null;
+        return date != null ?
+                date.atStartOfDay(ZoneId.of("Asia/Ho_Chi_Minh")).toInstant() : null;
     }
+
     private Instant getEndOfDay(LocalDate date) {
-        return date != null ? date.atTime(23, 59, 59).atZone(ZoneId.systemDefault()).toInstant() : null;
+        return date != null ?
+                date.atTime(23, 59, 59)
+                        .atZone(ZoneId.of("Asia/Ho_Chi_Minh"))
+                        .toInstant()
+                : null;
     }
 
     // 1. Top Products
