@@ -50,12 +50,18 @@ public class VnpayService {
         vnp_Params.put("vnp_ReturnUrl", vnpayConfig.getVnpReturnUrl());
         vnp_Params.put("vnp_IpAddr", vnp_IpAddr);
 
-        // Thời gian tạo & Hết hạn (15 phút)
-        Calendar cld = Calendar.getInstance(TimeZone.getTimeZone("Etc/GMT+7"));
+        TimeZone timeZone = TimeZone.getTimeZone("Asia/Ho_Chi_Minh");
+        Calendar cld = Calendar.getInstance(timeZone);
+
+        // CỰC KỲ QUAN TRỌNG: Set timezone cho formatter để đảm bảo nó format đúng giờ đã lấy
         SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmss");
+        formatter.setTimeZone(timeZone);
+
+        // Thời gian tạo
         String vnp_CreateDate = formatter.format(cld.getTime());
         vnp_Params.put("vnp_CreateDate", vnp_CreateDate);
 
+        // Thời gian hết hạn (cộng 15 phút)
         cld.add(Calendar.MINUTE, 15);
         String vnp_ExpireDate = formatter.format(cld.getTime());
         vnp_Params.put("vnp_ExpireDate", vnp_ExpireDate);
